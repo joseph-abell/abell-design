@@ -5,6 +5,24 @@ media_folder: static/assets
 public_folder: assets
 media_folder_relative: true
 collections:
+    - name: pages
+      label: Pages
+      files:
+          - label: 'home'
+            name: 'Home'
+            file: 'content/home.md'
+            fields:
+                - name: title
+                  label: Title
+                  widget: string
+                  default: Home
+                - name: images
+                  label: 'Images'
+                  widget: 'images'
+                  media_library:
+                      config:
+                      multiple: true
+
     - name: block
       label: Block
       folder: content/blocks

@@ -36,7 +36,7 @@ const StandardBlockComponent: FunctionComponent<Props> = props => {
                 <ImageSingle>
                     <ImageWrap>
                         <Image
-                            sizes={graphics[0]?.image?.childImageSharp.fluid}
+                            sizes={graphics[0].image.childImageSharp.fluid}
                         />
                         <Copyright {...graphics[0]} />
                     </ImageWrap>

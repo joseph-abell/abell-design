@@ -7,10 +7,8 @@ import {
     Arrow,
     Data,
     Title,
-    SubTitle,
 } from './style';
 import { Query } from './query';
-import { Copyright } from '../Copyright';
 
 export const Intro: FunctionComponent<{}> = () => {
     const scrollWindow = () => {
@@ -18,6 +16,7 @@ export const Intro: FunctionComponent<{}> = () => {
         if (data) {
             const windowScrollTop = window.scrollY || window.pageYOffset;
             const dataRect = data.getBoundingClientRect();
+
             animateScrollTo(dataRect.top + dataRect.height + windowScrollTop, {
                 speed: 1000,
             });
@@ -37,28 +36,17 @@ export const Intro: FunctionComponent<{}> = () => {
                         <ImageOverlay />
                         <Data className="intro-data">
                             <Title
-                                effect="fade-slide-left"
+                                effect="fade-slide-bottom"
                                 effectTimeout={timeoutBase}
                             >
-                                Grayscale promo
+                                Abell Design
                             </Title>
-                            <SubTitle
-                                effect="fade-slide-bottom"
-                                effectTimeout={timeoutBase + 500}
-                            >
-                                GatsbyJS starter
-                            </SubTitle>
                         </Data>
                         <Arrow
                             effectTimeout={timeoutBase + 1500}
                             onClick={() => scrollWindow()}
                         />
                     </Container>
-                    <Copyright
-                        author="Caspar Camille Rubin"
-                        source="https://unsplash.com/photos/fPkvU7RDmCo"
-                        sourceText="Unsplash"
-                    />
                 </>
             )}
         </Query>

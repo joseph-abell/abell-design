@@ -47,23 +47,11 @@ const getWidget = (node: Node) => {
     return StandardBlock;
 };
 
-const HomePage: FunctionComponent<Props> = ({ data }) => {
-    const { allMarkdownRemark: { nodes = [] } = {} } = data;
+const HomePage: FunctionComponent<Props> = () => {
     return (
         <Layout>
-            <SEO title="Home" keywords={['']} />
+            <SEO title="Home" keywords={['Design', 'York', 'Graphic Design']} />
             <Intro />
-            {nodes.map(node => {
-                const Widget = getWidget(node);
-                return (
-                    // @ts-ignore
-                    <Widget
-                        key={node.id}
-                        html={node.html}
-                        {...node.frontmatter}
-                    />
-                );
-            })}
         </Layout>
     );
 };
@@ -76,13 +64,6 @@ export const query = graphql`
                 html
                 frontmatter {
                     graphics {
-                        image {
-                            childImageSharp {
-                                fluid(maxWidth: 1240, quality: 80) {
-                                    ...GatsbyImageSharpFluid_tracedSVG
-                                }
-                            }
-                        }
                         author
                         source
                         sourceText

@@ -1,5 +1,5 @@
 ---
-id: 'three-pics'
+id: three-pics
 sort: 4
 effect: fade-slide-top
 effectTimeout: 0
