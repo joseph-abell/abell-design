@@ -33,9 +33,7 @@ const HomePage: FunctionComponent<Props> = ({
     },
 }) => {
     const keywordsString = keywords.map(k => k.keyword);
-
     console.log(images);
-
     return (
         <Layout>
             <SEO title={title} keywords={keywordsString} />
@@ -48,9 +46,7 @@ export const query = graphql`
     query Home {
         markdownRemark(frontmatter: { title: { eq: "Home" } }) {
             frontmatter {
-                images {
-                    image
-                }
+                image
                 title
                 keywords {
                     keyword
