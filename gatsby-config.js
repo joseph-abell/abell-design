@@ -13,8 +13,8 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                name: `markdown-pages`,
-                path: `${__dirname}/content/blocks`,
+                name: `pages`,
+                path: `${__dirname}/content/pages`,
             },
         },
         'gatsby-plugin-react-helmet',
