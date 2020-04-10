@@ -18,10 +18,14 @@ collections:
                   default: Home
                 - name: images
                   label: 'Images'
-                  widget: 'image'
-                  media_library:
-                      config:
-                          multiple: true
+                  widget: list
+                  fields:
+                      - name: image
+                        label: Image
+                        widget: image
+                        media_library:
+                            config:
+                            multiple: true
 
     - name: block
       label: Block
