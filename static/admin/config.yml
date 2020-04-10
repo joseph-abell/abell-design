@@ -1,6 +1,6 @@
 backend:
     name: github
-    repo: awesome1888/grayscale-promo-gatsbyjs-starter
+    repo: gerbilsinspace/abell-design
 media_folder: static/assets
 public_folder: assets
 media_folder_relative: true

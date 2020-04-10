@@ -1,8 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: 'Grayscale promo',
-        description: 'Grayscale promo gatsby starter',
-        author: '@awesome1888',
+        title: 'Abell Design',
     },
     plugins: [
         {
@@ -44,8 +42,8 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
-                name: 'gatsby-starter-default',
-                short_name: 'starter',
+                name: 'Abell Design',
+                short_name: 'Abell Design',
                 start_url: '/',
                 background_color: '#663399',
                 theme_color: '#663399',
