@@ -5,8 +5,6 @@ import { Layout } from '../components/Layout';
 import { SEO } from '../components/SEO';
 import { Intro } from '../components/Intro';
 
-import { StandardBlock } from '../components/StandardBlock';
-import { AccentBlock } from '../components/AccentBlock';
 import { FontSize } from '../type';
 import { EffectsSupported } from '../lib/effects';
 
@@ -37,15 +35,6 @@ interface Data {
 interface Props {
     data: Data;
 }
-
-const getWidget = (node: Node) => {
-    const { frontmatter: { widget = '' } = {} } = node;
-    if (widget === 'AccentBlock') {
-        return AccentBlock;
-    }
-
-    return StandardBlock;
-};
 
 const HomePage: FunctionComponent<Props> = () => {
     return (
