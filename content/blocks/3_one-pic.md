@@ -1,11 +1,8 @@
 ---
-id: 'three-pics'
+id: three-pics
 sort: 3
 graphics:
-  - author: Tianyi Ma
-    image: /assets/single.jpg
-    sourceText: Unsplash
-    source: https://unsplash.com/photos/WiONHd_zYI4
+  - image: assets/grace_abell_york__freelance_graphic_designer_2_ski_national_geographic-1.jpg
 effect: fade-slide-top
 effectTimeout: 0
 ---
