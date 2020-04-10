@@ -1244,14 +1244,14 @@ enum FileFieldsEnum {
     childMarkdownRemark___frontmatter___title
     childMarkdownRemark___frontmatter___id
     childMarkdownRemark___frontmatter___sort
+    childMarkdownRemark___frontmatter___fontSize
+    childMarkdownRemark___frontmatter___effect
+    childMarkdownRemark___frontmatter___effectTimeout
+    childMarkdownRemark___frontmatter___widget
     childMarkdownRemark___frontmatter___graphics
     childMarkdownRemark___frontmatter___graphics___author
     childMarkdownRemark___frontmatter___graphics___sourceText
     childMarkdownRemark___frontmatter___graphics___source
-    childMarkdownRemark___frontmatter___effect
-    childMarkdownRemark___frontmatter___effectTimeout
-    childMarkdownRemark___frontmatter___fontSize
-    childMarkdownRemark___frontmatter___widget
     childMarkdownRemark___excerpt
         @deprecated(
             reason: "Sorting on fields that need arguments to resolve is deprecated."
@@ -2560,6 +2560,10 @@ enum MarkdownRemarkFieldsEnum {
     frontmatter___title
     frontmatter___id
     frontmatter___sort
+    frontmatter___fontSize
+    frontmatter___effect
+    frontmatter___effectTimeout
+    frontmatter___widget
     frontmatter___graphics
     frontmatter___graphics___author
     frontmatter___graphics___image___sourceInstanceName
@@ -2600,10 +2604,6 @@ enum MarkdownRemarkFieldsEnum {
     frontmatter___graphics___image___children
     frontmatter___graphics___sourceText
     frontmatter___graphics___source
-    frontmatter___effect
-    frontmatter___effectTimeout
-    frontmatter___fontSize
-    frontmatter___widget
     excerpt
         @deprecated(
             reason: "Sorting on fields that need arguments to resolve is deprecated."
@@ -3024,22 +3024,22 @@ type MarkdownRemarkFrontmatter {
     title: String
     id: String
     sort: Float
-    graphics: [MarkdownRemarkFrontmatterGraphics]
+    fontSize: String
     effect: String
     effectTimeout: Int
-    fontSize: String
     widget: String
+    graphics: [MarkdownRemarkFrontmatterGraphics]
 }
 
 input MarkdownRemarkFrontmatterFilterInput {
     title: StringQueryOperatorInput
     id: StringQueryOperatorInput
     sort: FloatQueryOperatorInput
-    graphics: MarkdownRemarkFrontmatterGraphicsFilterListInput
+    fontSize: StringQueryOperatorInput
     effect: StringQueryOperatorInput
     effectTimeout: IntQueryOperatorInput
-    fontSize: StringQueryOperatorInput
     widget: StringQueryOperatorInput
+    graphics: MarkdownRemarkFrontmatterGraphicsFilterListInput
 }
 
 type MarkdownRemarkFrontmatterGraphics {
@@ -3255,8 +3255,6 @@ type Query {
     site(
         buildTime: DateQueryOperatorInput
         siteMetadata: SiteSiteMetadataFilterInput
-        port: IntQueryOperatorInput
-        host: StringQueryOperatorInput
         polyfill: BooleanQueryOperatorInput
         pathPrefix: StringQueryOperatorInput
         id: StringQueryOperatorInput
@@ -3374,8 +3372,6 @@ type Site implements Node {
         locale: String
     ): Date
     siteMetadata: SiteSiteMetadata
-    port: Int
-    host: String
     polyfill: Boolean
     pathPrefix: String
     id: ID!
@@ -3569,8 +3565,6 @@ type SiteEdge {
 enum SiteFieldsEnum {
     buildTime
     siteMetadata___title
-    port
-    host
     polyfill
     pathPrefix
     id
@@ -3664,8 +3658,6 @@ enum SiteFieldsEnum {
 input SiteFilterInput {
     buildTime: DateQueryOperatorInput
     siteMetadata: SiteSiteMetadataFilterInput
-    port: IntQueryOperatorInput
-    host: StringQueryOperatorInput
     polyfill: BooleanQueryOperatorInput
     pathPrefix: StringQueryOperatorInput
     id: StringQueryOperatorInput
@@ -3861,6 +3853,18 @@ enum SitePageFieldsEnum {
     pluginCreator___pluginOptions___plugins___pluginFilepath
     pluginCreator___pluginOptions___name
     pluginCreator___pluginOptions___path
+    pluginCreator___pluginOptions___pathPrefix
+    pluginCreator___pluginOptions___maxWidth
+    pluginCreator___pluginOptions___wrapperStyle
+    pluginCreator___pluginOptions___backgroundColor
+    pluginCreator___pluginOptions___linkImagesToOriginal
+    pluginCreator___pluginOptions___showCaptions
+    pluginCreator___pluginOptions___markdownCaptions
+    pluginCreator___pluginOptions___withWebp
+    pluginCreator___pluginOptions___tracedSVG
+    pluginCreator___pluginOptions___loading
+    pluginCreator___pluginOptions___disableBgImageOnAlpha
+    pluginCreator___pluginOptions___disableBgImage
     pluginCreator___pluginOptions___short_name
     pluginCreator___pluginOptions___start_url
     pluginCreator___pluginOptions___background_color
@@ -4051,10 +4055,34 @@ enum SitePluginFieldsEnum {
     pluginOptions___plugins___name
     pluginOptions___plugins___version
     pluginOptions___plugins___pluginOptions___name
+    pluginOptions___plugins___pluginOptions___pathPrefix
+    pluginOptions___plugins___pluginOptions___maxWidth
+    pluginOptions___plugins___pluginOptions___wrapperStyle
+    pluginOptions___plugins___pluginOptions___backgroundColor
+    pluginOptions___plugins___pluginOptions___linkImagesToOriginal
+    pluginOptions___plugins___pluginOptions___showCaptions
+    pluginOptions___plugins___pluginOptions___markdownCaptions
+    pluginOptions___plugins___pluginOptions___withWebp
+    pluginOptions___plugins___pluginOptions___tracedSVG
+    pluginOptions___plugins___pluginOptions___loading
+    pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha
+    pluginOptions___plugins___pluginOptions___disableBgImage
     pluginOptions___plugins___browserAPIs
     pluginOptions___plugins___pluginFilepath
     pluginOptions___name
     pluginOptions___path
+    pluginOptions___pathPrefix
+    pluginOptions___maxWidth
+    pluginOptions___wrapperStyle
+    pluginOptions___backgroundColor
+    pluginOptions___linkImagesToOriginal
+    pluginOptions___showCaptions
+    pluginOptions___markdownCaptions
+    pluginOptions___withWebp
+    pluginOptions___tracedSVG
+    pluginOptions___loading
+    pluginOptions___disableBgImageOnAlpha
+    pluginOptions___disableBgImage
     pluginOptions___short_name
     pluginOptions___start_url
     pluginOptions___background_color
@@ -4177,6 +4205,18 @@ type SitePluginPluginOptions {
     plugins: [SitePluginPluginOptionsPlugins]
     name: String
     path: String
+    pathPrefix: String
+    maxWidth: Int
+    wrapperStyle: String
+    backgroundColor: String
+    linkImagesToOriginal: Boolean
+    showCaptions: Boolean
+    markdownCaptions: Boolean
+    withWebp: Boolean
+    tracedSVG: Boolean
+    loading: String
+    disableBgImageOnAlpha: Boolean
+    disableBgImage: Boolean
     short_name: String
     start_url: String
     background_color: String
@@ -4189,6 +4229,18 @@ input SitePluginPluginOptionsFilterInput {
     plugins: SitePluginPluginOptionsPluginsFilterListInput
     name: StringQueryOperatorInput
     path: StringQueryOperatorInput
+    pathPrefix: StringQueryOperatorInput
+    maxWidth: IntQueryOperatorInput
+    wrapperStyle: StringQueryOperatorInput
+    backgroundColor: StringQueryOperatorInput
+    linkImagesToOriginal: BooleanQueryOperatorInput
+    showCaptions: BooleanQueryOperatorInput
+    markdownCaptions: BooleanQueryOperatorInput
+    withWebp: BooleanQueryOperatorInput
+    tracedSVG: BooleanQueryOperatorInput
+    loading: StringQueryOperatorInput
+    disableBgImageOnAlpha: BooleanQueryOperatorInput
+    disableBgImage: BooleanQueryOperatorInput
     short_name: StringQueryOperatorInput
     start_url: StringQueryOperatorInput
     background_color: StringQueryOperatorInput
@@ -4223,10 +4275,34 @@ input SitePluginPluginOptionsPluginsFilterListInput {
 
 type SitePluginPluginOptionsPluginsPluginOptions {
     name: String
+    pathPrefix: String
+    maxWidth: Int
+    wrapperStyle: String
+    backgroundColor: String
+    linkImagesToOriginal: Boolean
+    showCaptions: Boolean
+    markdownCaptions: Boolean
+    withWebp: Boolean
+    tracedSVG: Boolean
+    loading: String
+    disableBgImageOnAlpha: Boolean
+    disableBgImage: Boolean
 }
 
 input SitePluginPluginOptionsPluginsPluginOptionsFilterInput {
     name: StringQueryOperatorInput
+    pathPrefix: StringQueryOperatorInput
+    maxWidth: IntQueryOperatorInput
+    wrapperStyle: StringQueryOperatorInput
+    backgroundColor: StringQueryOperatorInput
+    linkImagesToOriginal: BooleanQueryOperatorInput
+    showCaptions: BooleanQueryOperatorInput
+    markdownCaptions: BooleanQueryOperatorInput
+    withWebp: BooleanQueryOperatorInput
+    tracedSVG: BooleanQueryOperatorInput
+    loading: StringQueryOperatorInput
+    disableBgImageOnAlpha: BooleanQueryOperatorInput
+    disableBgImage: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {
