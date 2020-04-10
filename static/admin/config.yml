@@ -21,7 +21,7 @@ collections:
                   widget: 'image'
                   media_library:
                       config:
-                      multiple: true
+                          multiple: true
 
     - name: block
       label: Block
