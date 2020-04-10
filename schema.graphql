@@ -1242,17 +1242,8 @@ enum FileFieldsEnum {
     internal___type
     childMarkdownRemark___id
     childMarkdownRemark___frontmatter___title
-    childMarkdownRemark___frontmatter___id
-    childMarkdownRemark___frontmatter___sort
-    childMarkdownRemark___frontmatter___fontSize
-    childMarkdownRemark___frontmatter___effect
-    childMarkdownRemark___frontmatter___effectTimeout
-    childMarkdownRemark___frontmatter___graphics
-    childMarkdownRemark___frontmatter___graphics___image
-    childMarkdownRemark___frontmatter___graphics___author
-    childMarkdownRemark___frontmatter___graphics___sourceText
-    childMarkdownRemark___frontmatter___graphics___source
-    childMarkdownRemark___frontmatter___widget
+    childMarkdownRemark___frontmatter___images
+    childMarkdownRemark___frontmatter___images___image
     childMarkdownRemark___excerpt
         @deprecated(
             reason: "Sorting on fields that need arguments to resolve is deprecated."
@@ -2559,17 +2550,8 @@ type MarkdownRemarkEdge {
 enum MarkdownRemarkFieldsEnum {
     id
     frontmatter___title
-    frontmatter___id
-    frontmatter___sort
-    frontmatter___fontSize
-    frontmatter___effect
-    frontmatter___effectTimeout
-    frontmatter___graphics
-    frontmatter___graphics___image
-    frontmatter___graphics___author
-    frontmatter___graphics___sourceText
-    frontmatter___graphics___source
-    frontmatter___widget
+    frontmatter___images
+    frontmatter___images___image
     excerpt
         @deprecated(
             reason: "Sorting on fields that need arguments to resolve is deprecated."
@@ -2988,42 +2970,24 @@ input MarkdownRemarkFilterInput {
 
 type MarkdownRemarkFrontmatter {
     title: String
-    id: String
-    sort: Float
-    fontSize: String
-    effect: String
-    effectTimeout: Int
-    graphics: [MarkdownRemarkFrontmatterGraphics]
-    widget: String
+    images: [MarkdownRemarkFrontmatterImages]
 }
 
 input MarkdownRemarkFrontmatterFilterInput {
     title: StringQueryOperatorInput
-    id: StringQueryOperatorInput
-    sort: FloatQueryOperatorInput
-    fontSize: StringQueryOperatorInput
-    effect: StringQueryOperatorInput
-    effectTimeout: IntQueryOperatorInput
-    graphics: MarkdownRemarkFrontmatterGraphicsFilterListInput
-    widget: StringQueryOperatorInput
+    images: MarkdownRemarkFrontmatterImagesFilterListInput
 }
 
-type MarkdownRemarkFrontmatterGraphics {
+type MarkdownRemarkFrontmatterImages {
     image: String
-    author: String
-    sourceText: String
-    source: String
 }
 
-input MarkdownRemarkFrontmatterGraphicsFilterInput {
+input MarkdownRemarkFrontmatterImagesFilterInput {
     image: StringQueryOperatorInput
-    author: StringQueryOperatorInput
-    sourceText: StringQueryOperatorInput
-    source: StringQueryOperatorInput
 }
 
-input MarkdownRemarkFrontmatterGraphicsFilterListInput {
-    elemMatch: MarkdownRemarkFrontmatterGraphicsFilterInput
+input MarkdownRemarkFrontmatterImagesFilterListInput {
+    elemMatch: MarkdownRemarkFrontmatterImagesFilterInput
 }
 
 type MarkdownRemarkGroupConnection {

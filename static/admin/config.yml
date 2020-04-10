@@ -16,6 +16,13 @@ collections:
                   label: Title
                   widget: string
                   default: Home
+                - name: keywords
+                  label: Keywords
+                  widget: list
+                  fields:
+                      - name: keyword
+                        label: Keyword
+                        widget: string
                 - name: images
                   label: 'Images'
                   widget: list

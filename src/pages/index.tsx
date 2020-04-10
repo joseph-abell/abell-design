@@ -5,62 +5,55 @@ import { Layout } from '../components/Layout';
 import { SEO } from '../components/SEO';
 import { Intro } from '../components/Intro';
 
-import { FontSize } from '../type';
-import { EffectsSupported } from '../lib/effects';
-
-interface Graphics {
-    source?: string;
-    author?: string;
-    image: any;
-}
-
-interface Node {
+interface MarkdownRemark {
     id: string;
     html: string;
     frontmatter: {
-        graphics: Graphics[];
-        widget: 'StandardBlock' | 'AccentBlock' | 'QuoteBlock';
-        fontSize: FontSize;
-        effect?: EffectsSupported;
-        effectTimeout?: number;
+        title: string;
+        keywords: {
+            keyword: string;
+        }[];
+        images: any[];
     };
 }
 
 interface Data {
-    allMarkdownRemark: {
-        nodes: Node[];
-    };
+    markdownRemark: MarkdownRemark;
 }
 
 interface Props {
     data: Data;
 }
 
-const HomePage: FunctionComponent<Props> = () => {
+const HomePage: FunctionComponent<Props> = ({
+    data: {
+        markdownRemark: {
+            frontmatter: { title, keywords, images },
+        },
+    },
+}) => {
+    const keywordsString = keywords.map(k => k.keyword);
+
+    console.log(images);
+
     return (
         <Layout>
-            <SEO title="Home" keywords={['Design', 'York', 'Graphic Design']} />
+            <SEO title={title} keywords={keywordsString} />
             <Intro />
         </Layout>
     );
 };
 
 export const query = graphql`
-    query HomePageQuery {
-        allMarkdownRemark(sort: { fields: frontmatter___sort, order: ASC }) {
-            nodes {
-                id
-                html
-                frontmatter {
-                    graphics {
-                        author
-                        source
-                        sourceText
-                    }
-                    widget
-                    fontSize
-                    effect
-                    effectTimeout
+    query Home {
+        markdownRemark(frontmatter: { title: { eq: "Home" } }) {
+            frontmatter {
+                images {
+                    image
+                }
+                title
+                keywords {
+                    keyword
                 }
             }
         }
